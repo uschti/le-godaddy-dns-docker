@@ -5,19 +5,19 @@ This Docker container works with the **Godaddy DNS API** and send a **Slack** no
 **Slack notification example**
 ![Slack Notification Example](./Slack_notification.png)
 
-##Usage with docker-compose.yml
+## Usage with docker-compose.yml
 ```
 docker-compose up
 ```
 
 
-##Usage with standard docker command
-###Create the **cert-data** volume first:
+## Usage with standard docker command
+### Create the **cert-data** volume first:
 ```
 docker volume create cert-data
 ```
 
-###Run the docker container
+### Run the docker container
 ```
 docker container run --rm -e GD_KEY: someMagicKey \
 					 	  -e GD_SECRET: theCorrespondingSecret \
@@ -30,8 +30,8 @@ docker container run --rm -e GD_KEY: someMagicKey \
 						  uschti/le-godaddy-dns
 ```
 						  
-##Input parameters explanation
-###Environment variables
+## Input parameters explanation
+### Environment variables
 **GD_KEY**:					Godaddy AIPI Key
 **GD_SECRET**:				Godaddy API Secret
 > Generate new Keys at: https://developer.godaddy.com/keys
@@ -39,7 +39,7 @@ docker container run --rm -e GD_KEY: someMagicKey \
 **SLACK_URL**:				Slack incoming webhook URL
 **SLACK_DOMAIN_TITLE**:		Slack title (to easily identify the domain)
 
-###Volumes
+### Volumes
 **/data/certs**:				Folder where the created certificate will be copied (example of created file: yourdomain.com.crt)
 **/data/keys**:					Folder where the created key will be copied (example of created file: yourdomain.com.key)
 **renew_certificates.conf**: 	Config file with the list of domains you want create the certificate
