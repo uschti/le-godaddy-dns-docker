@@ -46,8 +46,8 @@ uschti/le-godaddy-dns
 - **cert-data**:					Volume where the container store the created certificates and keys. This mounting avoid to create a new certificate each time the container run; with the configuration a new certificate will be created only of the certificate expiration is less than 1 month
 
 ## References
-[Godaddy DNS renewal](https://github.com/josteink/le-godaddy-dns)
-[Docker](https://docs.docker.com/)
+- [Godaddy DNS renewal](https://github.com/josteink/le-godaddy-dns)
+- [Docker](https://docs.docker.com/)
 
 ## Disclaimer
 This module is not affiliated with nor endorsed by Godaddy. The Godaddy API python-modules are not affiliated with nor endorsed by Godaddy.
