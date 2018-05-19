@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  le-godaddy-dns:
+    image: "uschti/le-godaddy-dns:1.0"
+    environment:
+      GD_KEY: someMagicKey
+      GD_SECRET: theCorrespondingSecret
+      SLACK_URL: https://hooks.slack.com/services/XXXXXXXXXXX
+      SLACK_DOMAIN_TITLE: yourdomain.com
+    volumes:
+      - /data/certs:/data/certs
+      - /data/keys:/data/keys
+      - renew_certificates.conf:/data/letsencrypt/renew_certificates.conf
+      - cert-data:/data/letsencrypt/dehydrated/certs
+
+volumes:
+  cert-data:
