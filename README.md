@@ -19,7 +19,7 @@ docker volume create cert-data
 
 ### Run the docker container
 ```
-docker container run --rm -e GD_KEY: someMagicKey \
+docker container run --rm -e GD_KEY=someMagicKey \
  -e GD_SECRET=theCorrespondingSecret \
  -e SLACK_URL=https://hooks.slack.com/services/XXXXXXXXXXX \
  -e SLACK_DOMAIN_TITLE=yourdomain.com \
