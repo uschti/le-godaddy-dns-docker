@@ -20,14 +20,14 @@ docker volume create cert-data
 ### Run the docker container
 ```
 docker container run --rm -e GD_KEY: someMagicKey \
--e GD_SECRET: theCorrespondingSecret \
--e SLACK_URL: https://hooks.slack.com/services/XXXXXXXXXXX \
--e SLACK_DOMAIN_TITLE: yourdomain.com \
--v /data/certs:/data/certs \
--v /data/keys:/data/keys \
--v renew_certificates.conf:/data/letsencrypt/renew_certificates.conf \
--v cert-data:/data/letsencrypt/dehydrated/certs \
-uschti/le-godaddy-dns
+ -e GD_SECRET=theCorrespondingSecret \
+ -e SLACK_URL=https://hooks.slack.com/services/XXXXXXXXXXX \
+ -e SLACK_DOMAIN_TITLE=yourdomain.com \
+ -v /data/certs:/data/certs \
+ -v /data/keys:/data/keys \
+ -v renew_certificates.conf:/data/letsencrypt/renew_certificates.conf \
+ -v cert-data:/data/letsencrypt/dehydrated/certs \
+ uschti/le-godaddy-dns
 ```
 
 ## Input parameters explanation

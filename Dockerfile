@@ -4,7 +4,7 @@ FROM ubuntu:latest
 LABEL maintainer="uschti@gmail.com"
 
 # Install system dependencies
-RUN apt-get update && apt-get install python3 python3-pip curl git -y
+RUN apt-get update && apt-get install python3 python3-pip curl git iputils-ping -y
 
 RUN mkdir -p /data/letsencrypt
 WORKDIR /data/letsencrypt
