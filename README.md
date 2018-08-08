@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/image/uschti/le-godaddy-dns.svg)](https://microbadger.com/images/uschti/le-godaddy-dns "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/uschti/le-godaddy-dns.svg)](https://microbadger.com/images/uschti/le-godaddy-dns "Get your own version badge on microbadger.com")
+
 # Let's encrypt Godaddy DNS renew Docker container
 Renew your Let's encrypt certificate by using the DNS validation procedure.
 This Docker container works with the **Godaddy DNS API** and send a **Slack** notification with the execution result.
