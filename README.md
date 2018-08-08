@@ -5,6 +5,10 @@ This Docker container works with the **Godaddy DNS API** and send a **Slack** no
 **Slack notification example**
 ![Slack Notification Example](./Slack_notification.png)
 
+## Let's Encrypt Wildcard
+Wildcard certificate generation is supported!
+Use first the domain and then the \*, example: **thirddomain.com \*.thirddomain.com**
+
 ## Usage with docker-compose.yml
 ```
 docker-compose up

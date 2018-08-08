@@ -13,6 +13,9 @@ WORKDIR /data/letsencrypt
 RUN git clone https://github.com/lukas2511/dehydrated
 RUN ./dehydrated/dehydrated --register --accept-terms
 
+# Set HOOK_CHAIN=yes to allow wildcard certificates (https://github.com/josteink/le-godaddy-dns#hook_chain)
+RUN echo HOOK_CHAIN=\"yes\" >> /data/letsencrypt/dehydrated/config
+
 RUN git clone https://github.com/josteink/le-godaddy-dns
 RUN cd le-godaddy-dns && python3 -m pip install -r requirements.txt --user
 
