@@ -13,6 +13,7 @@ export LC_CTYPE="en_US.UTF-8"
 ## Slack URL
 SLACK_URL=$SLACK_URL
 SLACK_WEBHOOK_USERNAME=$SLACK_DOMAIN_TITLE
+SLACK_CHANNEL=$SLACK_CHANNEL
 
 ## Preconditions
 if [ "$EUID" -eq 0 ]; then
@@ -21,7 +22,7 @@ if [ "$EUID" -eq 0 ]; then
 LETSENCRYPT_BASEPATH="/data/letsencrypt"
 CONFIG_FILE="/data/letsencrypt/renew_certificates.conf"
 
-## Copy the domains to dehydrated config 
+## Copy the domains to dehydrated config
 cat $CONFIG_FILE > dehydrated/domains.txt
 
 ## Generate the certificates
@@ -49,11 +50,11 @@ while read d; do
 		expirationDate=$(openssl x509 -enddate -noout -in $CERT_FILE)
 		expirationDate=${expirationDate#*=}
 
-		curl -X POST --data-urlencode "payload={\"channel\": \"#certificates\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"good\", \"text\": \"Certificate successfully renewed! Next expiration date: *$expirationDate*\" } ], \"icon_url\": \"https://cdn.uschti.com/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
+		curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"good\", \"text\": \"Certificate successfully renewed! Next expiration date: *$expirationDate*\" } ], \"icon_url\": \"https://cdn.uschti.com/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
 
 	else
 		echo "WARN: Cannot find Certificate: "$CERT_FILE" or privatekey: "$KEY_FILE"!!!"
-		curl -X POST --data-urlencode "payload={\"channel\": \"#certificates\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"warning\", \"text\": \"Cannot find Certificate: "$CERT_FILE" or privatekey: "$KEY_FILE"!!! \" } ], \"icon_url\": \"https://cdn.uschti.com/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
+		curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"warning\", \"text\": \"Cannot find Certificate: "$CERT_FILE" or privatekey: "$KEY_FILE"!!! \" } ], \"icon_url\": \"https://cdn.uschti.com/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
 	fi
 done <$CONFIG_FILE
 echo "INFO: DONE to move the certificates and keys to /data/certs and /data/keys !"
@@ -62,7 +63,7 @@ echo "INFO: DONE with certificate renew!"
 
 else
   echo "ERROR: Please run script as root!"
-  curl -X POST --data-urlencode "payload={\"channel\": \"#certificates\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"danger\", \"text\": \"Please run script as root! \" } ], \"icon_url\": \"https://cdn.uschti.ch/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
+  curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$SLACK_WEBHOOK_USERNAME\", \"attachments\": [ { \"title\": \"*$DOMAIN*\", \"color\": \"danger\", \"text\": \"Please run script as root! \" } ], \"icon_url\": \"https://cdn.uschti.ch/images/sdeiuhfeigf82788238bdhjkdsfb820923eguf4.png\"}" $SLACK_URL
 fi
 
 ## Log End date

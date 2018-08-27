@@ -8,6 +8,7 @@ services:
       GD_SECRET: theCorrespondingSecret
       SLACK_URL: https://hooks.slack.com/services/XXXXXXXXXXX
       SLACK_DOMAIN_TITLE: yourdomain.com
+      SLACK_CHANNEL: "#certificates"
     volumes:
       - /data/certs:/data/certs
       - /data/keys:/data/keys

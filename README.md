@@ -29,6 +29,7 @@ docker container run --rm -e GD_KEY=someMagicKey \
  -e GD_SECRET=theCorrespondingSecret \
  -e SLACK_URL=https://hooks.slack.com/services/XXXXXXXXXXX \
  -e SLACK_DOMAIN_TITLE=yourdomain.com \
+ -e SLACK_CHANNEL=#certificates \
  -v /data/certs:/data/certs \
  -v /data/keys:/data/keys \
  -v renew_certificates.conf:/data/letsencrypt/renew_certificates.conf \
@@ -44,6 +45,7 @@ docker container run --rm -e GD_KEY=someMagicKey \
 
 - **SLACK_URL**:				Slack incoming webhook URL
 - **SLACK_DOMAIN_TITLE**:		Slack title (to easily identify the domain)
+- **SLACK_CHANNEL**:		Slack channel
 
 ### Volumes
 - **/data/certs**:				Folder where the created certificate will be copied (example of created file: yourdomain.com.crt)
